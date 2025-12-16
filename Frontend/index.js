@@ -1,6 +1,36 @@
+/*
+*********************************************************************************************************
+ *  @File Name       : index.js
+ *  @Author          : <Tanishka Jain>(tanishka.jain@antrazal.com)
+ *  @Company         : Antrazal
+ *  @Date            : 11-12-2025
+ *  @Description     : Handles all frontend business logic for HealthSure Policy
+ *                     Operations Portal including patient management,
+ *                     policy actions, metrics, and modal handling.
+ *
+ *******************************************************************************************************
+ *  JIRA ID     Developer                                      TITLE
+ *  EZ-5        Tanishka Jain     Progressive add products LWC component development
+*********************************************************************************************************
+*/
 
 let currentPatientId = null;
 const url = "http://localhost:8000";
+
+
+/*
+*********************************************************
+ *  @Method Name    : getStatus
+ *  @Author         : <Tanishka Jain>(tanishka.jain@antrazal.com)
+ *  @Company        : Antrazal
+ *  @Description   : Fetches policy statistics such as active,
+ *                   cancelled, expired, and expiring policies
+ *                   and updates the dashboard metrics.
+ *  @Param         : None
+ *  @Return        : void
+*********************************************************
+*/
+
 
 const getStatus = async () => {
   const res = await fetch(`${url}/policies/statusofpolicies`);
@@ -37,6 +67,18 @@ const getStatus = async () => {
 };
 
 getStatus();
+/*
+*********************************************************
+ *  @Method Name    : handlePatientClick
+ *  @Author         : <Tanishka Jain>(tanishka.jain@antrazal.com)
+ *  @Company        : Antrazal
+ *  @Description   : Handles patient selection from the list,
+ *                   sets the active patient context, and
+ *                   loads patient profile and policies.
+ *  @Param         : patientId (Number) – Selected patient ID
+ *  @Return        : void
+*********************************************************
+*/
 
 
 const handlePatientClick = (patientId) =>{
@@ -69,7 +111,33 @@ const getPatients = async () =>{
   console.log(data);
 }
 
+/*
+*********************************************************
+ *  @Method Name    : getPatients
+ *  @Author         : <Tanishka Jain>(tanishka.jain@antrazal.com)
+ *  @Company        : Antrazal
+ *  @Description   : Fetches all patients from the backend
+ *                   and renders the patient list along
+ *                   with active policy counts.
+ *  @Return        : void
+*********************************************************
+*/
+
 getPatients();
+
+/*
+*********************************************************
+ *  @Method Name    : getPatientById
+ *  @Author         : <Tanishka Jain>(tanishka.jain@antrazal.com)
+ *  @Company        : Antrazal
+ *  @Description   : Retrieves patient details by ID and
+ *                   displays the patient profile section
+ *                   with personal and contact information.
+ *  @Param         : patientId (Number)
+ *  @Return        : void
+*********************************************************
+*/
+
 
 const getPatientById = async (patientId) =>{
   currentPatientId = Number(patientId);  
@@ -101,6 +169,18 @@ const getPatientById = async (patientId) =>{
   console.log(data.data);
 }
 
+/*
+*********************************************************
+ *  @Method Name    : getPoliciesByPatient
+ *  @Author         : <Tanishka Jain>(tanishka.jain@antrazal.com)
+ *  @Company        : Antrazal
+ *  @Description   : Fetches all policies associated with a
+ *                   specific patient and renders them
+ *                   in the policy table.
+ *  @Param         : patientId (Number)
+ *  @Return        : void
+*********************************************************
+*/
 
 const getPoliciesByPatient = async (patientId) =>{
   if(patientId === null || patientId === undefined){
@@ -164,7 +244,13 @@ const getPoliciesByPatient = async (patientId) =>{
 
   })
 }
-
+/**
+ *   Code block brief : Policy cancel and renew workflow
+ *   Author           : <Tanishka Jain>(tanishka.jain@antrazal.com)
+ *   Company          : Antrazal
+ *   Date             : 11-12-2025
+ *   STARTS HERE
+ */
 
 const cancelPolicy = async (policyId, patientId) =>{
   const res = await fetch(`${url}/policies/${policyId}/cancel`,{
@@ -199,6 +285,13 @@ const renewPolicy = async (policyId,patientId) =>{
   console.log(data);
 
 }
+/**
+ *   Code block brief : Policy cancel and renew workflow
+ *   Author           : <Tanishka Jain>(tanishka.jain@antrazal.com)
+ *   Company          : Antrazal
+ *   Date             : 11-12-2025
+ *   ENDS HERE
+ */
 
 const addPatient = async () => {
   const patientData = {
@@ -237,6 +330,16 @@ const addPatient = async () => {
     return null;
   }
 };
+/*
+*********************************************************
+ *  @Method Name    : showDefaultPatientUI
+ *  @Author         : <Tanishka Jain>(tanishka.jain@antrazal.com)
+ *  @Company        : Antrazal
+ *  @Description   : Displays a default placeholder UI when
+ *                   no patient is selected or after deletion.
+ *  @Return        : void
+*********************************************************
+*/
 
 const showDefaultPatientUI = () =>{
   const def = document.getElementById("default-patient");
@@ -296,6 +399,17 @@ const deletePatient = async(patientId) =>{
     showDefaultPatientUI(); 
   }
 }
+/*
+*********************************************************
+ *  @Method Name    : addPolicy
+ *  @Author         : <Tanishka Jain>(tanishka.jain@antrazal.com)
+ *  @Company        : Antrazal
+ *  @Description   : Creates a new policy for the selected
+ *                   patient and refreshes policies, metrics,
+ *                   and patient data.
+ *  @Return        : void
+*********************************************************
+*/
 
 const addPolicy = async () => {
   const policyData = {
@@ -349,6 +463,7 @@ searchBar.addEventListener("input",()=>{
 
 
 
+
 function openModal() {
   document.getElementById("patientModal").classList.add("active");
   document.getElementById("modalBackdrop").classList.add("active");
@@ -358,6 +473,14 @@ function closeModal() {
   document.getElementById("patientModal").classList.remove("active");
   document.getElementById("modalBackdrop").classList.remove("active");
 }
+/*
+*********************************************************
+ *  @Method Name    : openAddPolicyModal
+ *  @Description   : Opens the add policy modal for the
+ *                   currently selected patient.
+ *  @Return        : void
+*********************************************************
+*/
 
 function openAddPolicyModal() {
   if (!currentPatientId) {
@@ -369,6 +492,13 @@ function openAddPolicyModal() {
   document.getElementById("policyModal").classList.add("active");
   document.getElementById("modalBackdrop").classList.add("active");
 }
+/*
+*********************************************************
+ *  @Method Name    : closePolicyModal
+ *  @Description   : Closes the add policy modal dialog.
+ *  @Return        : void
+*********************************************************
+*/
 
 function closePolicyModal() {
   document.getElementById("policyModal").classList.remove("active");
