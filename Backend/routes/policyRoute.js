@@ -1,3 +1,16 @@
+/*
+*********************************************************************************************************
+ *  @File Name       : policyRoute.js
+ *  @Author          : <Tanishka Jain>(tanishka.jain@antrazal.com)
+ *  @Company         : Antrazal
+ *  @Date            : 15-12-2025
+ *  @Description     : Defines REST API routes for policy
+ *                     creation, cancellation, renewal,
+ *                     and status tracking.
+ *******************************************************************************************************
+*/
+
+
 import express from "express"
 import {  cancelPolicy, createPolicy, getPoliciesByPatient, renewPolicy, statusOfPolicies } from "../controllers/policies.controller.js";
 

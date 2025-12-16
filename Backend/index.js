@@ -1,3 +1,15 @@
+/*
+*********************************************************************************************************
+ *  @File Name       : server.js
+ *  @Author          : <Tanishka Jain>(tanishka.jain@antrazal.com)
+ *  @Company         : Antrazal
+ *  @Date            : 15-12-2025
+ *  @Description     : Entry point of the HealthSure backend server.
+ *                     Initializes Express application, middleware,
+ *                     API routes, and starts the server.
+ *******************************************************************************************************
+*/
+
 import express from "express"
 import dotenv from "dotenv"
 import cors from "cors"
