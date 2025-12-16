@@ -1,4 +1,22 @@
 
+/*
+*********************************************************************************************************
+ *  @File Name       : index.css
+ *  @Author          : <Tanishka Jain>(tanishka.jain@antrazal.com)
+ *  @Company         : Antrazal
+ *  @Date            : 12-12-2025
+ *  @Description     : Provides styling and responsive design for the HealthSure Policy Operations
+                      Portal, covering layout structure, typography, color themes, cards, tables,
+                      buttons, modals, animations, and mobile-friendly adaptations.
+
+ *
+ *******************************************************************************************************
+ *  JIRA ID     Developer                                      TITLE
+ *  EZ-5        Tanishka Jain     Progressive add products LWC component development
+*********************************************************************************************************
+*/
+
+
 *{box-sizing:border-box;}
 html,body{margin:0;height:100%;font-family:"Segoe UI",Roboto,Arial,sans-serif;background:#f3f6fa;color:#1b2b3a;}
 img{display:block;max-width:100%;}

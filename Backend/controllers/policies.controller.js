@@ -1,4 +1,31 @@
+
+/*
+*********************************************************************************************************
+ *  @File Name       : policies.controller.js
+ *  @Author          : <Tanishka Jain>(tanishka.jain@antrazal.com)
+ *  @Company         : Antrazal
+ *  @Date            : 15-12-2025
+ *  @Description     : Manages policy-related operations including
+ *                     creation, renewal, cancellation, status tracking,
+ *                     and fetching policies by patient.
+ *******************************************************************************************************
+*/
+
+
 import pool from "../Connection/db.js";
+
+/*
+*********************************************************
+ *  @Method Name    : createPolicy
+ *  @Author         : <Tanishka Jain>(tanishka.jain@antrazal.com)
+ *  @Company        : Antrazal
+ *  @Description   : Creates a new insurance policy for
+ *                   a specific patient.
+ *  @Param         : req, res
+ *  @Return        : JSON policy ID
+*********************************************************
+*/
+
 
 export const createPolicy = async (req,res) =>{
     try {
@@ -35,6 +62,18 @@ export const createPolicy = async (req,res) =>{
         console.log(error);
     }
 }
+/*
+*********************************************************
+ *  @Method Name    : getPoliciesByPatient
+ *  @Author         : <Tanishka Jain>(tanishka.jain@antrazal.com)
+ *  @Company        : Antrazal
+ *  @Description   : Retrieves all policies associated
+ *                   with a given patient ID.
+ *  @Param         : req, res
+ *  @Return        : JSON list of policies
+*********************************************************
+*/
+
 
 export const getPoliciesByPatient = async (req,res) =>{
     try {
@@ -45,6 +84,17 @@ export const getPoliciesByPatient = async (req,res) =>{
         console.log(error);
     }
 }
+/*
+*********************************************************
+ *  @Method Name    : statusOfPolicies
+ *  @Author         : <Tanishka Jain>(tanishka.jain@antrazal.com)
+ *  @Company        : Antrazal
+ *  @Description   : Returns aggregated counts of active,
+ *                   cancelled, expired, and expiring policies.
+ *  @Param         : req, res
+ *  @Return        : JSON policy statistics
+*********************************************************
+*/
 
 export const statusOfPolicies = async(req,res) =>{
     try {
@@ -63,6 +113,18 @@ export const statusOfPolicies = async(req,res) =>{
         })
     }
 }
+/*
+*********************************************************
+ *  @Method Name    : cancelPolicy
+ *  @Author         : <Tanishka Jain>(tanishka.jain@antrazal.com)
+ *  @Company        : Antrazal
+ *  @Description   : Cancels a policy using policy number
+ *                   and updates end date to current date.
+ *  @Param         : req, res
+ *  @Return        : JSON update status
+*********************************************************
+*/
+
 export const cancelPolicy = async (req,res) =>{
     try {
         const id = req.params.id;
@@ -88,6 +150,18 @@ export const cancelPolicy = async (req,res) =>{
         }) 
     }
 }
+/*
+*********************************************************
+ *  @Method Name    : renewPolicy
+ *  @Author         : <Tanishka Jain>(tanishka.jain@antrazal.com)
+ *  @Company        : Antrazal
+ *  @Description   : Renews an existing policy by extending
+ *                   its end date by one year.
+ *  @Param         : req, res
+ *  @Return        : JSON update status
+*********************************************************
+*/
+
 export const renewPolicy = async (req, res) => {
     try {
         const id = req.params.id;

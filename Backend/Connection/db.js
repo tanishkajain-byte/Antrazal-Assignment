@@ -1,3 +1,21 @@
+/*
+*********************************************************************************************************
+ *  @File Name       : db.js
+ *  @Author          : <Tanishka Jain>(tanishka.jain@antrazal.com)
+ *  @Company         : Antrazal
+ *  @Date            : 12-12-2025
+ *  @Description     : Creates and exports a MySQL connection pool using
+ *                     mysql2 and environment variables for secure and
+ *                     efficient database access across the application.
+ *******************************************************************************************************
+ *  JIRA ID     Developer                                  TITLE
+ *  EZ-5        <Tanishka Jain>              Progressive add products LWC component development
+*********************************************************************************************************
+*/
+
+
+
+
 import mysql2 from "mysql2"
 import dotenv from "dotenv"
 dotenv.config();

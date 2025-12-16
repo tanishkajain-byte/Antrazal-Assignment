@@ -1,4 +1,28 @@
+/*
+*********************************************************************************************************
+ *  @File Name       : patients.controller.js
+ *  @Author          : <Tanishka Jain>(tanishka.jain@antrazal.com)
+ *  @Company         : Antrazal
+ *  @Date            : 12-12-2025
+ *  @Description     : Handles all patient-related operations including
+ *                     creating, deleting, retrieving patients and
+ *                     fetching patient details by ID.
+ *******************************************************************************************************
+*/
+
+
 import pool from "../Connection/db.js";
+/*
+*********************************************************
+ *  @Method Name    : createPatient
+ *  @Author         : <Tanishka Jain>(tanishka.jain@antrazal.com)
+ *  @Company        : Antrazal
+ *  @Description   : Creates a new patient record in the
+ *                   database after validating input fields.
+ *  @Param         : req, res
+ *  @Return        : JSON response with patient ID
+*********************************************************
+*/
 
 export const createPatient = async (req, res) => {
   try {
@@ -40,6 +64,17 @@ export const createPatient = async (req, res) => {
     });
   }
 };
+/*
+*********************************************************
+ *  @Method Name    : deletePatient
+ *  @Author         : <Tanishka Jain>(tanishka.jain@antrazal.com)
+ *  @Company        : Antrazal
+ *  @Description   : Deletes a patient record based on
+ *                   provided patient ID.
+ *  @Param         : req, res
+ *  @Return        : JSON success response
+*********************************************************
+*/
 
 export const deletePatient = async (req,res) =>{
   try {
@@ -58,6 +93,17 @@ export const deletePatient = async (req,res) =>{
         });
   }
 }
+/*
+*********************************************************
+ *  @Method Name    : getPatients
+ *  @Author         : <Tanishka Jain>(tanishka.jain@antrazal.com)
+ *  @Company        : Antrazal
+ *  @Description   : Retrieves all patients along with
+ *                   count of active policies.
+ *  @Param         : req, res
+ *  @Return        : JSON list of patients
+*********************************************************
+*/
 
 export const getPatients = async (req,res) =>{
     try {
@@ -83,6 +129,18 @@ export const getPatients = async (req,res) =>{
         })
     }
 }
+
+/*
+*********************************************************
+ *  @Method Name    : getPatientById
+ *  @Author         : <Tanishka Jain>(tanishka.jain@antrazal.com)
+ *  @Company        : Antrazal
+ *  @Description   : Fetches patient details using patient ID.
+ *  @Param         : req, res
+ *  @Return        : JSON patient object
+*********************************************************
+*/
+
 export const getPatientById = async (req,res) =>{
     try {
         const { id } = req.params;
