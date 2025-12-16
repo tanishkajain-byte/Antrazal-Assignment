@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>HealthSure - Dashboard</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+
+  <header class="top-header">
+    <div class="brand">
+      <div class="logo">HS</div>
+      <h1>HealthSure Policy Operations Portal</h1>
+    </div>
+
+    <div class="header-search">
+      <div class="search" role="search" aria-label="Search patients">
+        <input type="search" placeholder="Search patients" id="searchBar"/>
+        <span class="icon"></span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+      
+  
+    <aside class="panel right-panel">
+      <div class="card-title">Patient Summary Card</div>
+     <div id="default-patient">
+      <div class="profile" id="profile">
+        <div class="avatar"id="dp">
+          <img src="https://plus.unsplash.com/premium_vector-1682269284255-8209b981c625?w=352&dpr=1&h=367&auto=format&fit=crop&q=60&ixlib=rb-4.1.0" alt="avatar" style="width:84px;height:84px;object-fit:cover;border-radius:50%;" />
+        </div>
+        <div class="profile-info"  id="patientCard">
+          <div class="name" >Tanishka</div>
+          <div class="meta" id= ><strong>Age:</strong> 21 &nbsp; • &nbsp; <strong>City:</strong>Manali</div>
+          <div class="meta"><strong>Phone:</strong>9782090021</div>
+          <div class="meta"><strong>Email:</strong> tanishka.chen@email.com</div>
+        </div>
+      </div>
+
+      <h3 style="margin:16px 6px 8px 6px; color:#17334f;">Policies</h3>
+
+      <div class="policies" role="table" aria-label="Patient policies">
+        <table>
+          <thead>
+            <tr>
+              <td style="width:110px">Policy #</td>
+              <td>Plan</td>
+              <td style="width:110px">Sum Insured</td>
+              <td style="width:110px">Start Date</td>
+              <td style="width:110px">End Date</td>
+              <td style="width:80px">Status</td>
+              <td style="width:110px">Actions</td>
+            </tr>
+          </thead>
+          <tbody id="policies">
+            <tr>
+              <td>PO-111</td>
+              <td>Medical</td>
+              <td>70000</td>
+              <td>01/15/2021</td>
+              <td>01/14/2025</td>
+              <td><span class="status"><span class="dot green"></span>Active</span></td>
+              <td><button class="action-btn">Cancel</button> <button class="action-btn">Renew</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+    </aside>
+    <section class="panel left-panel">
+      <div class="actions">
+        <button class="btn-primary" onclick="openModal()">＋ Onboard New Patient</button>
+      </div>
+      
+      <div class="list-header">
+        <div>Name</div>
+        <div>Phone</div>
+        <div>City</div>
+        <div style="text-align:center">Active Policies</div>
+      </div>
+
+      
+        <div id="card-container" style="display: flex; flex-direction: column; gap: 10px;"></div>
+    </section>
+    
+    <div class="metrics-row">
+      <div class="metric-card" id="activatedPolicies">
+        <div class="metric-label">Active Policies</div>
+        <div class="metric-number">2,456 <span style="color:#27b35f;font-size:14px;margin-left:6px;">▲</span></div>
+      </div>
+
+      <div class="metric-card" id="cancelledPolicies">
+        <div class="metric-label">Cancelled Policies</div>
+        <div class="metric-number">189 <span style="color:#e05b5b;font-size:14px;margin-left:6px;">▼</span></div>
+      </div>
+
+      <div class="metric-card" id="expiredPolicies">
+        <div class="metric-label">Expired Policies</div>
+        <div class="metric-number">342</div>
+      </div>
+
+      <div class="metric-card" id="expiring">
+        <div class="metric-label">Expiring in 30 days</div>
+        <div class="metric-number">154</div>
+      </div>
+    </div>
+
+  </main>
+
+
+<div id="modalBackdrop" class="modal-backdrop"></div>
+
+<div id="patientModal" class="modal">
+  <div class="modal-content">
+
+    <h2 class="modal-title">Add New Patient</h2>
+
+    <div class="modal-form">
+
+      <div class="row">
+        <div class="field">
+          <label>Full Name</label>
+          <input type="text" id="name">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>Email</label>
+          <input type="email" id="email">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>Phone</label>
+          <input type="text" id="phone">
+        </div>
+      </div>
+
+     <div class="row two-cols">
+  <div class="field">
+    <label>Age</label>
+    <input type="number" id="age">
+  </div>
+
+  <div class="field">
+    <label>City</label>
+    <input type="text" id="city">
+  </div>
+</div>
+
+
+      <div class="row">
+        <div class="field">
+          <label>Gender</label>
+          <select id="gender">
+            <option value="MALE">Male</option>
+            <option value="FEMALE">Female</option>
+          </select>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-buttons">
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-submitr" onclick="addPatient()">Add Patient</button>
+    </div>
+
+  </div>
+</div>
+
+<div id="policyModal" class="modal">
+  <div class="modal-content">
+
+    <h2 class="modal-title">Add Policy</h2>
+
+    <div class="modal-form">
+
+     
+      <input type="hidden" id="policyPatientId">
+
+      <div class="row">
+        <div class="field">
+          <label>Policy Number</label>
+          <input type="text" id="policyNumber">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>Plan Name</label>
+          <input type="text" id="planName">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>Sum Insured</label>
+          <input type="number" id="sumInsured">
+        </div>
+      </div>
+
+      <div class="row two-cols">
+        <div class="field">
+          <label>Start Date</label>
+          <input type="date" id="startDate">
+        </div>
+
+        <div class="field">
+          <label>End Date</label>
+          <input type="date" id="endDate">
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-buttons">
+      <button class="btn-cancel" onclick="closePolicyModal()">Cancel</button>
+      <button class="btn-submitr" onclick="addPolicy()">Add Policy</button>
+    </div>
+
+  </div>
+</div>
+  <script src="index.js"> </script>
+</body>
+</html>
